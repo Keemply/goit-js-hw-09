@@ -1,15 +1,19 @@
 // console.log('Form');
-const formData = {
-  email: '',
-  message: '',
-};
+
 const form = document.querySelector('.feedback-form');
 const localStorageKey = 'feedback-form-state';
 const textarea = form.elements.message;
 const input = form.elements.email;
 const local = localStorage.getItem(localStorageKey);
 const parsedLocal = JSON.parse(local) ?? '';
-
+if (localStorage.length === 0) {
+  var formData = {
+    email: '',
+    message: '',
+  };
+} else {
+  var formData = parsedLocal;
+}
 textarea.value = parsedLocal.message ?? '';
 input.value = parsedLocal.email ?? '';
 form.addEventListener('submit', evnt => {
